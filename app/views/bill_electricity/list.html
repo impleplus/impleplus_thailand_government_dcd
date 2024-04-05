@@ -1,0 +1,97 @@
+<div class="page-body">
+	<div class="container-xl">
+ 		<div class="col-12">
+ 			<div class="card">
+ 				<div class="card-body">
+ 							<h3>Bill Electric</h3><hr class="header-text"/>
+ 								<div class="row pb-1">
+ 									<div class="col col-10">
+ 										<div class="row">
+ 									<div class="col col-3">
+ 										<div class="form-group">
+ 											<label class="form-label">&nbsp;</label>
+ 											<div>
+ 												<input type="text" name="qbill_electricityRecords" id="qbill_electricityRecords" value="<%=param.qbill_electricityRecords%>" data-type="text" data-field='electricity_user_name,month' data-operator="like" class="form-control table_tiHtvn-searchFilter" placeholder="Search for…" autocomplete="off">
+ 											</div>
+ 										</div>
+ 									</div>
+ 									
+<div class="col col-2"> 
+ 										<div class="form-group">
+ 											<label class="form-label">สถานะการชำระเงิน</label>
+ 											<div>
+ 												<select name="qpayment_status" id="qpayment_status" class="form-select table_tiHtvn-searchFilter" data-type="text" data-field='payment_status' data-operator="like" autocomplete="off">
+ 													<option value=""></option>
+ 													<% [{"value":"0","text":"ยังไม่ชำระ"},{"value":"1","text":"ชำระแลว"}].forEach(function(data) { %>
+ 														<option value="<%=data.value%>" <%if(param.qpayment_status==data.value){%>selected<%}%> ><%=data.text%></option>
+ 													<% }) %> 
+ 												</select>
+ 											</div>
+ 										</div>
+ 									</div>
+ 										<div class="col col-1">
+ 											<label class="form-label">&nbsp;</label>
+ 											<button class="btn btn-secondary btn-pill" type="button" onclick="table_tiHtvn.onSearch()" >Search</button>
+ 										</div>
+ 										</div>
+ 									</div>
+ 									<div class="col-auto ms-auto d-print-none">
+ 										<div class="btn-list">
+ 											<%if(accessAction.export){%><a href="#" onclick="table_tiHtvn.export()" class="btn btn-outline-secondary d-none d-sm-inline">Export</a><%}%>
+ 											<%if(accessAction.create){%><a href="/bill_electricity/edit" class="btn btn-outline-success d-none d-sm-inline" target="">New Data</a><%}%>
+ 										</div>
+ 									</div>
+ 								</div>
+ 								<div class="table-responsive">
+ 									<table class="table card-table table-vcenter text-nowrap datatable table-striped" id="tbl-table_tiHtvn">
+ 										<thead>
+ 											<tr>
+ 												<th>ผู้ใช้ไฟฟ้า</th>
+												<th>เดือน</th>
+												<th>จำนวน</th>
+												<th>สถานะการชำระเงิน</th>
+												<th></th>
+												<th></th>
+ 											</tr>
+ 										</thead>
+ 										<tbody>
+ 										</tbody>
+ 										<tfoot></tfoot> 
+ 									</table>
+ 								
+
+ 								<div id="tbl-table_tiHtvn-pagination" class="imple-pagination"></div>
+ 							</div>
+ 				</div>
+ 			</div>
+ 		</div>
+ 	</div>
+</div>
+
+<%- contentFor('scripts') %>
+<script type="text/javascript">
+    var accessAction = [];
+    var accessActionData = "<%-accessAction%>";
+    var dataParam = '<%-JSON.stringify(param)%>';
+    var param = {};
+    if(dataParam != ""){
+      param = JSON.parse('<%-JSON.stringify(param)%>');
+    }    
+    if(accessActionData != "" && accessActionData != undefined) {
+        accessAction = JSON.parse(String.raw `<%-JSON.stringify(accessAction)%>`);
+    }
+    
+    var bill_electricityRecords = JSON.parse(String.raw `<%-JSON.stringify(bill_electricityRecords)%>`);
+    
+    var bill_electricityRecordsPagination = JSON.parse(String.raw `<%-JSON.stringify(bill_electricityRecordsPagination)%>`);
+    var table_tiHtvn = new Table_tiHtvn("table_tiHtvn",accessAction);
+0
+
+onload = () => {
+        table_tiHtvn.render(bill_electricityRecords,"");
+        table_tiHtvn.pagination(bill_electricityRecordsPagination);
+}
+    
+    
+
+</script>

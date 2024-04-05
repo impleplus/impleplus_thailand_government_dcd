@@ -1,0 +1,130 @@
+<div class="page-body">
+	<div class="container-xl">
+ 		<div class="col-12">
+ 			<div class="card">
+ 				<div class="card-body">
+ 					<ul class="nav nav-tabs" data-bs-toggle="tabs">
+ 						<li class="nav-item">
+ 							<a href="#tabs-HHsQkE" class="nav-link active" data-bs-toggle="tab">Information</a>
+ 						</li>
+ 
+ 					</ul>
+ 					<div class="card-body">
+ 						<div class="tab-content">
+ 							<div class="tab-pane active show" id="tabs-HHsQkE">
+ 								<form action="/bill_electricity/save" class="needs-validation" id="frm-HHsQkE" method="post">
+ 
+ 									<div class="form-group mb-3 col-md-12">
+ 										<label class="form-label">ชื่อ การไฟฟ้า</label>
+ 											<div class="row g-2">
+ 											<div class="col">
+ 												<input type="hidden" name="province_electricity_branch_id" id="lookup_MtZLMo" value="<%=bill_electricityRecord.province_electricity_branch_id%>">
+ 												<input type="text" name="province_electricity_branch_id_text" id="lookup_MtZLMo_text" value="<%=bill_electricityRecord.province_electricity_branch_name%>" required onkeydown="event.preventDefault()" class="form-control " >
+ 											</div>
+ 											<div class="col-auto">
+ 												<button type="button" href="#" class="btn btn-white btn-icon" aria-label="Button" data-title="ชื่อ การไฟฟ้า" data-varibale="province_electricity_branchRecords" data-url="/master/province_electricity_branch" data-headers="Code,Name" data-fields="code,name" data-select="id,name" data-target="lookup_MtZLMo,lookup_MtZLMo_text" onclick="lookup.open(this)">
+ 													<svg class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><circle cx="10" cy="10" r="7" /><line x1="21" y1="21" x2="15" y2="15" /></svg>
+ 												</button>
+ 											</div>
+ 										</div>
+ 									</div>
+ 
+ 									<div class="form-group mb-3 col-md-12">
+ 										<label class="form-label">ผู้ใช้ไฟฟ้า</label>
+ 											<div class="row g-2">
+ 											<div class="col">
+ 												<input type="hidden" name="electricity_user_id" id="lookup_aGSOYE" value="<%=bill_electricityRecord.electricity_user_id%>">
+ 												<input type="text" name="electricity_user_id_text" id="lookup_aGSOYE_text" value="<%=bill_electricityRecord.electricity_user_name%>" required onkeydown="event.preventDefault()" class="form-control " >
+ 											</div>
+ 											<div class="col-auto">
+ 												<button type="button" href="#" class="btn btn-white btn-icon" aria-label="Button" data-title="ผู้ใช้ไฟฟ้า" data-varibale="electricity_userRecords" data-url="/electricity_user" data-headers="User Number,User Name" data-fields="electricity_user_number,electricity_user_name" data-select="id,electricity_user_name" data-target="lookup_aGSOYE,lookup_aGSOYE_text" onclick="lookup.open(this)">
+ 													<svg class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><circle cx="10" cy="10" r="7" /><line x1="21" y1="21" x2="15" y2="15" /></svg>
+ 												</button>
+ 											</div>
+ 										</div>
+ 									</div>
+ 									<div class="form-group mb-3 col-md-12">
+ 										<label class="form-label">ปี</label>
+ 										<div>
+ 											<input type="number" name="year" id="input_qyfuAX" maxlength="100" value="<%=bill_electricityRecord.year%>" class="form-control " autocomplete="off" >
+ 										</div>
+ 									</div>
+ 									<div class="form-group mb-3 col-md-12">
+ 										<label class="form-label">เดือน</label>
+ 										<div>
+ 											<input type="text" name="month" id="input_DVdlwu" maxlength="100" value="<%=bill_electricityRecord.month%>" class="form-control " autocomplete="off" >
+ 										</div>
+ 									</div>
+ 									<div class="form-group mb-3 col-md-12">
+ 										<label class="form-label">จำนวน</label>
+ 										<div>
+ 											<input type="number" name="amount" id="input_JcHpod" maxlength="100" value="<%=bill_electricityRecord.amount%>" required class="form-control " autocomplete="off" >
+ 										</div>
+ 									</div>
+ 									<div class="form-group mb-3 col-md-12">
+ 										<label class="form-label">เลขที่ใบเสร็จรับเงิน</label>
+ 										<div>
+ 											<input type="text" name="payment_receipt_number" id="input_XjJKcb" maxlength="100" value="<%=bill_electricityRecord.payment_receipt_number%>" class="form-control " autocomplete="off" >
+ 										</div>
+ 									</div>
+ 							<div class="form-group mb-3 col-md-12">
+ 								<label class="form-label">สถานะการชำระเงิน</label>
+ 								<div>
+ 									<select name="payment_status" id="select_SzkybX" class="form-select" >
+ 										<option value="0" <%if(bill_electricityRecord.payment_status==0){%>selected<%}%> >ยังไม่ชำระ</option>
+										<option value="1" <%if(bill_electricityRecord.payment_status==1){%>selected<%}%> >ชำระแล้ว</option>
+
+ 									</select>
+ 								</div>
+ 							</div>
+ 
+ 							<div class="form-group mb-3 col-md-12">
+ 								<label class="form-label">รายละเอียดเพิ่มเติม</label>
+ 								<div>
+ 									<textarea name="remark" id="textarea_eAngSw" maxlength="100" class="form-control " ><%=bill_electricityRecord.remark%></textarea>
+ 								</div>
+ 							</div>
+ 											<%if(accessAction.edit){%> 
+ 												<div class="spinner-border" id="button_heqHwQ_loading" role="status" style="display: none;"><span class="visually-hidden">Loading...</span></div> 
+ 												<button type="submit" id="button_heqHwQ" class="btn btn-fw btn-primary btn-save" data-form="frm-HHsQkE" method-callback="" method-before="" >Save</button> 
+ 											<%}%>
+ 
+ 
+ 								</form>
+ 							</div>
+ 
+ 						</div>
+ 					</div>
+ 				</div>
+ 			</div>
+ 		</div>
+ 	</div>
+</div>
+
+<%- contentFor('scripts') %>
+<script type="text/javascript">
+    var accessAction = [];
+    var accessActionData = "<%-accessAction%>";
+    var dataParam = '<%-JSON.stringify(param)%>';
+    var param = {};
+    if(dataParam != ""){
+      param = JSON.parse('<%-JSON.stringify(param)%>');
+    }    
+    if(accessActionData != "" && accessActionData != undefined) {
+        accessAction = JSON.parse(String.raw `<%-JSON.stringify(accessAction)%>`);
+    }
+    0
+
+onload = () => {
+                const d = new Date();
+		const year = d.getFullYear();
+		const month = d.getMonth();
+		if(!param.id) {
+			document.getElementById("input_qyfuAX").value = year;
+			document.getElementById("input_DVdlwu").value = month+1;
+		}
+}
+    
+    
+
+</script>

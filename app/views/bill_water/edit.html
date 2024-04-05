@@ -1,0 +1,130 @@
+<div class="page-body">
+	<div class="container-xl">
+ 		<div class="col-12">
+ 			<div class="card">
+ 				<div class="card-body">
+ 					<ul class="nav nav-tabs" data-bs-toggle="tabs">
+ 						<li class="nav-item">
+ 							<a href="#tabs-tMJMEb" class="nav-link active" data-bs-toggle="tab">Information</a>
+ 						</li>
+ 
+ 					</ul>
+ 					<div class="card-body">
+ 						<div class="tab-content">
+ 							<div class="tab-pane active show" id="tabs-tMJMEb">
+ 								<form action="/bill_water/save" class="needs-validation" id="frm-tMJMEb" method="post">
+ 
+ 									<div class="form-group mb-3 col-md-12">
+ 										<label class="form-label">การประปา สาขา</label>
+ 											<div class="row g-2">
+ 											<div class="col">
+ 												<input type="hidden" name="province_waterwork_branch_id" id="lookup_hFEEMc" value="<%=bill_waterRecord.province_waterwork_branch_id%>">
+ 												<input type="text" name="province_waterwork_branch_id_text" id="lookup_hFEEMc_text" value="<%=bill_waterRecord.province_waterwork_branch_name%>" class="form-control " >
+ 											</div>
+ 											<div class="col-auto">
+ 												<button type="button" href="#" class="btn btn-white btn-icon" aria-label="Button" data-title="การประปา สาขา" data-varibale="province_waterwork_branchRecords" data-url="/master/province_waterwork_branch" data-headers="Code,Name" data-fields="code,name" data-select="id,name" data-target="lookup_hFEEMc,lookup_hFEEMc_text" onclick="lookup.open(this)">
+ 													<svg class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><circle cx="10" cy="10" r="7" /><line x1="21" y1="21" x2="15" y2="15" /></svg>
+ 												</button>
+ 											</div>
+ 										</div>
+ 									</div>
+ 
+ 									<div class="form-group mb-3 col-md-12">
+ 										<label class="form-label">ชื่อผู้ใช้น้ำ</label>
+ 											<div class="row g-2">
+ 											<div class="col">
+ 												<input type="hidden" name="water_user_id" id="lookup_XLNYlh" value="<%=bill_waterRecord.water_user_id%>">
+ 												<input type="text" name="water_user_id_text" id="lookup_XLNYlh_text" value="<%=bill_waterRecord.water_user_name%>" class="form-control " >
+ 											</div>
+ 											<div class="col-auto">
+ 												<button type="button" href="#" class="btn btn-white btn-icon" aria-label="Button" data-title="ชื่อผู้ใช้น้ำ" data-varibale="water_userRecords" data-url="/water_user" data-headers="user Number,User Name" data-fields="water_user_number,water_user_name" data-select="id,water_user_name" data-target="lookup_XLNYlh,lookup_XLNYlh_text" onclick="lookup.open(this)">
+ 													<svg class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><circle cx="10" cy="10" r="7" /><line x1="21" y1="21" x2="15" y2="15" /></svg>
+ 												</button>
+ 											</div>
+ 										</div>
+ 									</div>
+ 									<div class="form-group mb-3 col-md-12">
+ 										<label class="form-label">ปี</label>
+ 										<div>
+ 											<input type="text" name="year" id="input_DcRKMS" maxlength="100" value="<%=bill_waterRecord.year%>" class="form-control " autocomplete="off" >
+ 										</div>
+ 									</div>
+ 									<div class="form-group mb-3 col-md-12">
+ 										<label class="form-label">เดือน</label>
+ 										<div>
+ 											<input type="number" name="month" id="input_BupqxS" maxlength="100" value="<%=bill_waterRecord.month%>" required class="form-control " autocomplete="off" >
+ 										</div>
+ 									</div>
+ 									<div class="form-group mb-3 col-md-12">
+ 										<label class="form-label">จำนวน</label>
+ 										<div>
+ 											<input type="number" name="amount" id="input_AvlgHv" maxlength="100" value="<%=bill_waterRecord.amount%>" required class="form-control " autocomplete="off" >
+ 										</div>
+ 									</div>
+ 									<div class="form-group mb-3 col-md-12">
+ 										<label class="form-label">เลขที่ใบเสร็จรับเงิน</label>
+ 										<div>
+ 											<input type="text" name="payment_receipt_number" id="input_GuIjYo" maxlength="100" value="<%=bill_waterRecord.payment_receipt_number%>" class="form-control " autocomplete="off" >
+ 										</div>
+ 									</div>
+ 							<div class="form-group mb-3 col-md-12">
+ 								<label class="form-label">สถานะการชำระเงิน</label>
+ 								<div>
+ 									<select name="payment_status" id="select_uAFQls" class="form-select" >
+ 										<option value="0" <%if(bill_waterRecord.payment_status==0){%>selected<%}%> >ยังไม่ชำระ</option>
+										<option value="1" <%if(bill_waterRecord.payment_status==1){%>selected<%}%> >ชำระแล้ว</option>
+
+ 									</select>
+ 								</div>
+ 							</div>
+ 
+ 							<div class="form-group mb-3 col-md-12">
+ 								<label class="form-label">Remark</label>
+ 								<div>
+ 									<textarea name="ข้อมูลเพิ่มเติม" id="textarea_ybmlGm" maxlength="100" class="form-control " ><%=bill_waterRecord.ข้อมูลเพิ่มเติม%></textarea>
+ 								</div>
+ 							</div>
+ 											<%if(accessAction.edit){%> 
+ 												<div class="spinner-border" id="button_VFYdBY_loading" role="status" style="display: none;"><span class="visually-hidden">Loading...</span></div> 
+ 												<button type="submit" id="button_VFYdBY" class="btn btn-fw btn-primary btn-save" data-form="frm-tMJMEb" method-callback="" method-before="" >Save</button> 
+ 											<%}%>
+ 
+ 
+ 								</form>
+ 							</div>
+ 
+ 						</div>
+ 					</div>
+ 				</div>
+ 			</div>
+ 		</div>
+ 	</div>
+</div>
+
+<%- contentFor('scripts') %>
+<script type="text/javascript">
+    var accessAction = [];
+    var accessActionData = "<%-accessAction%>";
+    var dataParam = '<%-JSON.stringify(param)%>';
+    var param = {};
+    if(dataParam != ""){
+      param = JSON.parse('<%-JSON.stringify(param)%>');
+    }    
+    if(accessActionData != "" && accessActionData != undefined) {
+        accessAction = JSON.parse(String.raw `<%-JSON.stringify(accessAction)%>`);
+    }
+    0
+
+onload = () => {
+                const d = new Date();
+		const year = d.getFullYear();
+		const month = d.getMonth();
+		if(!param.id) {
+			document.getElementById("input_DcRKMS").value = year;
+			document.getElementById("input_BupqxS").value = month+1;
+		}
+}
+    
+    
+
+</script>

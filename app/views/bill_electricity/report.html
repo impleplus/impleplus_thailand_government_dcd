@@ -1,0 +1,99 @@
+<div class="page-body">
+	<div class="container-xl">
+ 		<div class="col-12">
+ 			<div class="card">
+ 				<div class="card-body">
+ 							<h3>Report Bill Electric</h3><hr class="header-text"/>
+ 								<div class="row pb-1">
+ 									<div class="col col-10">
+ 										<div class="row">
+ 									<div class="col col-3">
+ 										<div class="form-group">
+ 											<label class="form-label">&nbsp;</label>
+ 											<div>
+ 												<input type="text" name="qbill_electricityRecords" id="qbill_electricityRecords" value="<%=param.qbill_electricityRecords%>" data-type="text" data-field='province_electricity_branch_id,electricity_user_id' data-operator="like" class="form-control table_gQgtcE-searchFilter" placeholder="Search for…" autocomplete="off">
+ 											</div>
+ 										</div>
+ 									</div>
+ 									
+<div class="col col-2"> 
+ 										<div class="form-group">
+ 											<label class="form-label">สถานะการชำระเงิน</label>
+ 											<div>
+ 												<select name="qpayment_status" id="qpayment_status" class="form-select table_gQgtcE-searchFilter" data-type="text" data-field='payment_status' data-operator="like" autocomplete="off">
+ 													<option value=""></option>
+ 													<% [{"value":"0","text":"ยังไม่ชำระ"},{"value":"1","text":"ชำระแลว"}].forEach(function(data) { %>
+ 														<option value="<%=data.value%>" <%if(param.qpayment_status==data.value){%>selected<%}%> ><%=data.text%></option>
+ 													<% }) %> 
+ 												</select>
+ 											</div>
+ 										</div>
+ 									</div>
+ 										<div class="col col-1">
+ 											<label class="form-label">&nbsp;</label>
+ 											<button class="btn btn-secondary btn-pill" type="button" onclick="table_gQgtcE.onSearch()" >Search</button>
+ 										</div>
+ 										</div>
+ 									</div>
+ 									<div class="col-auto ms-auto d-print-none">
+ 										<div class="btn-list">
+ 											<%if(accessAction.export){%><a href="#" onclick="table_gQgtcE.export()" class="btn btn-outline-secondary d-none d-sm-inline">Export</a><%}%>
+ 											
+ 										</div>
+ 									</div>
+ 								</div>
+ 								<div class="table-responsive">
+ 									<table class="table card-table table-vcenter text-nowrap datatable table-striped" id="tbl-table_gQgtcE">
+ 										<thead>
+ 											<tr>
+ 												<th>Province electricity branch id</th>
+												<th>Electricity user id</th>
+												<th>Month</th>
+												<th>Amount</th>
+												<th>Payment status</th>
+												<th>Payment receipt number</th>
+												<th>Remark</th>
+												<th>Year</th>
+ 											</tr>
+ 										</thead>
+ 										<tbody>
+ 										</tbody>
+ 										<tfoot></tfoot> 
+ 									</table>
+ 								
+
+ 								<div id="tbl-table_gQgtcE-pagination" class="imple-pagination"></div>
+ 							</div>
+ 				</div>
+ 			</div>
+ 		</div>
+ 	</div>
+</div>
+
+<%- contentFor('scripts') %>
+<script type="text/javascript">
+    var accessAction = [];
+    var accessActionData = "<%-accessAction%>";
+    var dataParam = '<%-JSON.stringify(param)%>';
+    var param = {};
+    if(dataParam != ""){
+      param = JSON.parse('<%-JSON.stringify(param)%>');
+    }    
+    if(accessActionData != "" && accessActionData != undefined) {
+        accessAction = JSON.parse(String.raw `<%-JSON.stringify(accessAction)%>`);
+    }
+    
+    var bill_electricityRecords = JSON.parse(String.raw `<%-JSON.stringify(bill_electricityRecords)%>`);
+    
+    var bill_electricityRecordsPagination = JSON.parse(String.raw `<%-JSON.stringify(bill_electricityRecordsPagination)%>`);
+    var table_gQgtcE = new Table_gQgtcE("table_gQgtcE",accessAction);
+0
+
+onload = () => {
+        table_gQgtcE.render(bill_electricityRecords,"");
+        table_gQgtcE.pagination(bill_electricityRecordsPagination);
+}
+    
+    
+
+</script>

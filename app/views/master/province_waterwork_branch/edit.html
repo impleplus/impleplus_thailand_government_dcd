@@ -1,0 +1,71 @@
+<div class="page-body">
+	<div class="container-xl">
+ 		<div class="col-12">
+ 			<div class="card">
+ 				<div class="card-body">
+ 					<ul class="nav nav-tabs" data-bs-toggle="tabs">
+ 						<li class="nav-item">
+ 							<a href="#tabs-FZpVOM" class="nav-link active" data-bs-toggle="tab">Information</a>
+ 						</li>
+ 
+ 					</ul>
+ 					<div class="card-body">
+ 						<div class="tab-content">
+ 							<div class="tab-pane active show" id="tabs-FZpVOM">
+ 								<form action="/master/province_waterwork_branch/save" class="needs-validation" id="frm-FZpVOM" method="post">
+ 									<div class="form-group mb-3 col-md-12">
+ 										<label class="form-label">รหัส</label>
+ 										<div>
+ 											<input type="text" name="code" id="input_DOCqyR" maxlength="100" value="<%=province_waterwork_branchRecord.code%>" class="form-control " autocomplete="off" >
+ 										</div>
+ 									</div>
+ 									<div class="form-group mb-3 col-md-12">
+ 										<label class="form-label">ชื่อ</label>
+ 										<div>
+ 											<input type="text" name="name" id="input_LWQYWw" maxlength="100" value="<%=province_waterwork_branchRecord.name%>" class="form-control " autocomplete="off" >
+ 										</div>
+ 									</div>
+ 									<div class="form-group mb-3 col-md-12">
+ 										<label class="form-label">จังหวัด</label>
+ 										<div>
+ 											<input type="text" name="country_name" id="input_qnsZWT" maxlength="100" value="<%=province_waterwork_branchRecord.country_name%>" class="form-control " autocomplete="off" >
+ 										</div>
+ 									</div>
+ 											<%if(accessAction.edit){%> 
+ 												<div class="spinner-border" id="button_RHmMNg_loading" role="status" style="display: none;"><span class="visually-hidden">Loading...</span></div> 
+ 												<button type="submit" id="button_RHmMNg" class="btn btn-fw btn-primary btn-save" data-form="frm-FZpVOM" method-callback="" method-before="" >Save</button> 
+ 											<%}%>
+ 
+ 
+ 								</form>
+ 							</div>
+ 
+ 						</div>
+ 					</div>
+ 				</div>
+ 			</div>
+ 		</div>
+ 	</div>
+</div>
+
+<%- contentFor('scripts') %>
+<script type="text/javascript">
+    var accessAction = [];
+    var accessActionData = "<%-accessAction%>";
+    var dataParam = '<%-JSON.stringify(param)%>';
+    var param = {};
+    if(dataParam != ""){
+      param = JSON.parse('<%-JSON.stringify(param)%>');
+    }    
+    if(accessActionData != "" && accessActionData != undefined) {
+        accessAction = JSON.parse(String.raw `<%-JSON.stringify(accessAction)%>`);
+    }
+    0
+
+onload = () => {
+        
+}
+    
+    
+
+</script>
